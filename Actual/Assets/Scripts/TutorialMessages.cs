@@ -101,6 +101,7 @@ public class TutorialMessages : MonoBehaviour
     public void EnemyGreen()
     {
         pushDown.SetActive(false);
+        gamePad.SetActive(false);
         Green.SetActive(true);
         greenM.SetActive(true);
     }

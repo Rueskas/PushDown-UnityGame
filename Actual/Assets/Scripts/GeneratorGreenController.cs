@@ -67,7 +67,7 @@ public class GeneratorGreenController : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D trigger)
     {
-        if (trigger.tag == "PlayerFeet" && active == true)
+        if (trigger.tag == "PlayerFeet" && box.isActiveAndEnabled == true)
         {
             CancellSummon();
         }

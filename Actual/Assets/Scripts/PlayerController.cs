@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     protected bool grounded;
     protected bool playing = false;
     protected bool escape = false;
+    protected bool pushDown = true;
     protected Vector3 startPosition;
     protected enum PlayerState { Idle, Left, Right, Stuned };
     protected PlayerState playerState = PlayerState.Idle;
@@ -18,6 +19,7 @@ public class PlayerController : MonoBehaviour
     protected Transform transformPlayer;
     protected SpriteRenderer sprite;
     protected Rigidbody2D rb2D;
+    protected Collider2D coll; 
     [SerializeField]
     protected GameObject game;
 
@@ -37,6 +39,7 @@ public class PlayerController : MonoBehaviour
         transformPlayer = GetComponent<Transform>();
         sprite = GetComponentInChildren<SpriteRenderer>();
         rb2D = GetComponent<Rigidbody2D>();
+        coll = GetComponent<Collider2D>();
 
         startPosition = transformPlayer.transform.position;
     }
@@ -94,6 +97,7 @@ public class PlayerController : MonoBehaviour
                     playerState = PlayerState.Idle;
                     Stop();
                     timer = 3f;
+                    escape = false;
                 }
             }
             else if (playerState == PlayerState.Stuned && lives > 0 && escape == true)
@@ -133,14 +137,20 @@ public class PlayerController : MonoBehaviour
                 rb2D.AddForce(new Vector2(0, 8.2f), ForceMode2D.Impulse);
                 UpdateAnimation("Jump");
             }
-            else
-            {
-                rb2D.velocity = new Vector2(rb2D.velocity.x, 0);
-                rb2D.AddForce(new Vector2(0, -8.2f), ForceMode2D.Impulse);
-                UpdateAnimation("Fall");
-            }
         }
        
+    }
+
+    public void PushDown()
+    {
+        if (playerState != PlayerState.Stuned && playing && pushDown)
+        {
+            if (grounded == true)
+                coll.enabled = false;
+            rb2D.velocity = new Vector2(rb2D.velocity.x, 0);
+            rb2D.AddForce(new Vector2(0, -8.2f), ForceMode2D.Impulse);
+            UpdateAnimation("Fall");
+        }
     }
 
     public void Stop()
@@ -174,7 +184,10 @@ public class PlayerController : MonoBehaviour
         if (playerState != PlayerState.Stuned && playing)
         {
             escape = true;
-            Damaged();
+            playerState = PlayerState.Stuned;
+            if (lives > 0)
+                RestLive();
+
         }
     }
 
@@ -192,10 +205,25 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D trigger)
     {
+        if (trigger.tag == "Ground")
+        {
+            coll.enabled = true;
+        }
         if (trigger.tag == "Sea" && playerState != PlayerState.Stuned)
         {
             Damaged();
             transformPlayer.transform.position = startPosition;
+        }
+    }
+    void OnTriggerStay2D(Collider2D trigger)
+    {
+        if (trigger.tag == "Generator" || trigger.tag == "MainPlatform")
+        {
+            pushDown = false;
+        }
+        else
+        {
+            pushDown = true;
         }
     }
 }
