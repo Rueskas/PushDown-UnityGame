@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
     protected Transform transformPlayer;
     protected SpriteRenderer sprite;
     protected Rigidbody2D rb2D;
-    protected Collider2D coll; 
+    protected Collider2D coll;
     [SerializeField]
     protected GameObject game;
 
@@ -54,7 +54,7 @@ public class PlayerController : MonoBehaviour
             {
                 transformPlayer.position = new Vector3(transformPlayer.position.x - speed, transformPlayer.position.y, 0);
 
-                if (grounded &&rb2D.velocity.y <= 0.2f && rb2D.velocity.y > -0.2f)
+                if (grounded && rb2D.velocity.y <= 0.2f && rb2D.velocity.y > -0.2f)
                     UpdateAnimation("Run");
             }
 
@@ -105,12 +105,13 @@ public class PlayerController : MonoBehaviour
                 escape = false;
                 playerState = PlayerState.Idle;
             }
+            print(pushDown);
         }
     }
 
     public void MoveLeft()
     {
-        if (playerState != PlayerState.Stuned && playing )
+        if (playerState != PlayerState.Stuned && playing)
         {
             playerState = PlayerState.Left;
             sprite.flipX = true;
@@ -138,7 +139,7 @@ public class PlayerController : MonoBehaviour
                 UpdateAnimation("Jump");
             }
         }
-       
+
     }
 
     public void PushDown()
@@ -201,6 +202,7 @@ public class PlayerController : MonoBehaviour
     {
         grounded = false;
         animator.SetBool("Grounded", false);
+        pushDown = true;
     }
 
     void OnTriggerEnter2D(Collider2D trigger)
@@ -217,13 +219,9 @@ public class PlayerController : MonoBehaviour
     }
     void OnTriggerStay2D(Collider2D trigger)
     {
-        if (trigger.tag == "Generator" || trigger.tag == "MainPlatform")
+        if (trigger.tag == "Generator" || trigger.tag == "MainPlatform" || trigger.tag == "Enemy")
         {
             pushDown = false;
-        }
-        else
-        {
-            pushDown = true;
         }
     }
 }
