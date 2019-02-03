@@ -75,7 +75,7 @@ public class EnemyGreenController : MonoBehaviour
             player.GetComponent<PlayerController>().Damaged();
             speed = -speed;
         }
-        else if (trigger.tag == "PlayerFeet")
+        else if (trigger.tag == "PlayerFeet" && walk == true && init)
         {
             walk = false;
             particle.Play();

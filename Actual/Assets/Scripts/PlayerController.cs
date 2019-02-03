@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     protected float timer = 3f;
     protected bool grounded;
     protected bool playing = false;
+    protected bool escape = false;
     protected Vector3 startPosition;
     protected enum PlayerState { Idle, Left, Right, Stuned };
     protected PlayerState playerState = PlayerState.Idle;
@@ -50,7 +51,7 @@ public class PlayerController : MonoBehaviour
             {
                 transformPlayer.position = new Vector3(transformPlayer.position.x - speed, transformPlayer.position.y, 0);
 
-                if (grounded)
+                if (grounded &&rb2D.velocity.y <= 0.2f && rb2D.velocity.y > -0.2f)
                     UpdateAnimation("Run");
             }
 
@@ -58,14 +59,14 @@ public class PlayerController : MonoBehaviour
             {
                 transformPlayer.position = new Vector3(transformPlayer.position.x + speed, transformPlayer.position.y, 0);
 
-                if (grounded)
+                if (grounded && rb2D.velocity.y <= 0.2f && rb2D.velocity.y > -0.2f)
                     UpdateAnimation("Run");
             }
-            if (grounded == false && rb2D.velocity.y < 0)
+            if (grounded == false && rb2D.velocity.y < 0 && playerState != PlayerState.Stuned)
             {
                 UpdateAnimation("Fall");
             }
-            if (playerState == PlayerState.Stuned)
+            if (playerState == PlayerState.Stuned && escape == false)
             {
                 if (lives >= 0)
                 {
@@ -83,6 +84,22 @@ public class PlayerController : MonoBehaviour
                     UpdateAnimation("Death");
                     game.GetComponent<Game>().SetGameState(Game.GameState.Finished);
                 }
+            }
+            if (playerState == PlayerState.Stuned && lives <= 0 && escape == true)
+            {
+                UpdateAnimation("Stun");
+                timer -= Time.deltaTime;
+                if (timer < 0)
+                {
+                    playerState = PlayerState.Idle;
+                    Stop();
+                    timer = 3f;
+                }
+            }
+            else if (playerState == PlayerState.Stuned && lives > 0 && escape == true)
+            {
+                escape = false;
+                playerState = PlayerState.Idle;
             }
         }
     }
@@ -150,6 +167,14 @@ public class PlayerController : MonoBehaviour
         {
             RestLive();
             playerState = PlayerState.Stuned;
+        }
+    }
+    public void Escaped()
+    {
+        if (playerState != PlayerState.Stuned && playing)
+        {
+            escape = true;
+            Damaged();
         }
     }
 

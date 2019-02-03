@@ -36,6 +36,10 @@ public class TutorialMessages : MonoBehaviour
     protected GameObject panel;
     [SerializeField]
     protected GameObject block;
+    [SerializeField]
+    protected GameObject gamePad;
+    [SerializeField]
+    protected GameObject pushDown;
 
 
 
@@ -72,11 +76,14 @@ public class TutorialMessages : MonoBehaviour
     }
     public void RunPresentation()
     {
+        gamePad.SetActive(true);
         PlayerControl.GetComponent<PlayerTutorial>().MoveRight();
         CountLives.SetActive(false);
         Lives.SetActive(false);
         Run.SetActive(true);
+        
     }
+
     public void Stop()
     {
         PlayerControl.GetComponent<PlayerTutorial>().Stop();
@@ -86,9 +93,14 @@ public class TutorialMessages : MonoBehaviour
         Run.SetActive(false);
         Jump.SetActive(true);
     }
-    public void EnemyGreen()
+    public void PushDownPresentation()
     {
         Jump.SetActive(false);
+        pushDown.SetActive(true);
+    }
+    public void EnemyGreen()
+    {
+        pushDown.SetActive(false);
         Green.SetActive(true);
         greenM.SetActive(true);
     }

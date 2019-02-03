@@ -80,7 +80,7 @@ public class EnemyBlueController : MonoBehaviour
         {
             speed = -speed;
         }
-        else if ( trigger.tag == "Player" )
+        else if ( trigger.tag == "Player"  && walk == true && init)
         {
             player.GetComponent<PlayerController>().Damaged();
             speed = -speed;

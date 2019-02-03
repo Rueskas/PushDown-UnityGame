@@ -24,7 +24,7 @@ public class Escape : MonoBehaviour
     {
         if (trigger.tag == "Enemy")
         {
-            Player.GetComponent<PlayerController>().RestLive();
+            Player.GetComponent<PlayerController>().Escaped();
         }
     }
 }
