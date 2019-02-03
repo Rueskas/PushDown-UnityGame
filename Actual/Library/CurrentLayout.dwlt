@@ -114,7 +114,7 @@ MonoBehaviour:
   m_MinSize: {x: 681, y: 498}
   m_MaxSize: {x: 18008, y: 14048}
   vertical: 0
-  controlID: 10600
+  controlID: 824
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -139,7 +139,7 @@ MonoBehaviour:
   m_MinSize: {x: 404, y: 498}
   m_MaxSize: {x: 14006, y: 14048}
   vertical: 1
-  controlID: 10601
+  controlID: 825
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -164,7 +164,7 @@ MonoBehaviour:
   m_MinSize: {x: 404, y: 224}
   m_MaxSize: {x: 8004, y: 4024}
   vertical: 0
-  controlID: 10602
+  controlID: 826
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -242,7 +242,7 @@ MonoBehaviour:
   m_MinSize: {x: 336, y: 274}
   m_MaxSize: {x: 14006, y: 10024}
   vertical: 0
-  controlID: 10554
+  controlID: 717
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -321,7 +321,7 @@ MonoBehaviour:
   m_MinSize: {x: 277, y: 274}
   m_MaxSize: {x: 4002, y: 8024}
   vertical: 1
-  controlID: 10581
+  controlID: 757
 --- !u!114 &14
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -485,7 +485,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: a4cbffffbecbffffd2cbffffacccffffb0ccffff02cdffff46cdffff60cdffff74cdffffaccfffffe4cfffff46d0ffff70e2ffffcce3ffffc6faffffb2fbffffc23000006032000096330000c48b0000ae8c0000ca8c00009c900000
+      m_ExpandedIDs: bcfbffff7230000046320000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -541,9 +541,9 @@ MonoBehaviour:
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -0.53351164, y: -0.32972568, z: 9.373115}
+    m_Target: {x: -0.28029555, y: 1.2672158, z: 9.281023}
     speed: 2
-    m_Value: {x: -0.53351164, y: -0.32972568, z: 9.373115}
+    m_Value: {x: -0.28029555, y: 1.2672158, z: 9.281023}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -575,9 +575,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 16.634579
+    m_Target: 25.832993
     speed: 2
-    m_Value: 16.634579
+    m_Value: 25.832993
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -653,20 +653,20 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes
+    - Assets
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scenes
+  - Assets
   m_LastFoldersGridSize: -1
-  m_LastProjectPath: C:\Users\Ruesk\OneDrive\Documentos\UNITY\survive
+  m_LastProjectPath: C:\Users\Ruesk\OneDrive\Documentos\PUSH DOWN\PushDown-UnityGame\Actual
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 8e260000
-    m_LastClickedID: 9870
-    m_ExpandedIDs: 000000001c280000882a000028300000
+    m_SelectedIDs: 22260000
+    m_LastClickedID: 9762
+    m_ExpandedIDs: 0000000016280000822a000032340000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -694,7 +694,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 54260000
     m_LastClickedID: 9812
-    m_ExpandedIDs: 00000000282600001c280000882a000028300000
+    m_ExpandedIDs: 0000000016280000822a000032340000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
