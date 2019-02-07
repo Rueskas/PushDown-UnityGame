@@ -20,8 +20,11 @@ public class PlayerController : MonoBehaviour
     protected SpriteRenderer sprite;
     protected Rigidbody2D rb2D;
     protected Collider2D coll;
+    protected AudioSource clips;
     [SerializeField]
     protected GameObject game;
+    [SerializeField]
+    protected AudioClip jump;
 
     public int GetLives()
     {
@@ -40,6 +43,7 @@ public class PlayerController : MonoBehaviour
         sprite = GetComponentInChildren<SpriteRenderer>();
         rb2D = GetComponent<Rigidbody2D>();
         coll = GetComponent<Collider2D>();
+        clips = GetComponent<AudioSource>();
 
         startPosition = transformPlayer.transform.position;
     }
@@ -105,7 +109,6 @@ public class PlayerController : MonoBehaviour
                 escape = false;
                 playerState = PlayerState.Idle;
             }
-            print(pushDown);
         }
     }
 
@@ -137,6 +140,8 @@ public class PlayerController : MonoBehaviour
                 rb2D.velocity = new Vector2(rb2D.velocity.x, 0);
                 rb2D.AddForce(new Vector2(0, 8.2f), ForceMode2D.Impulse);
                 UpdateAnimation("Jump");
+                clips.clip = jump;
+                clips.Play();
             }
         }
 

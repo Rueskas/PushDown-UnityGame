@@ -17,6 +17,8 @@ TagManager:
   - PushDownComplete
   - Generator
   - MainPlatform
+  - GamePad
+  - MusicGUI
   layers:
   - Default
   - TransparentFX
@@ -59,4 +61,7 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 2333105543
+    locked: 0
+  - name: Options
+    uniqueID: 4001587691
     locked: 0

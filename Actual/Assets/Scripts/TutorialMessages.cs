@@ -35,11 +35,11 @@ public class TutorialMessages : MonoBehaviour
     [SerializeField]
     protected GameObject panel;
     [SerializeField]
-    protected GameObject block;
-    [SerializeField]
     protected GameObject gamePad;
     [SerializeField]
     protected GameObject pushDown;
+    [SerializeField]
+    protected GameObject buttonSkip;
 
 
 
@@ -56,7 +56,7 @@ public class TutorialMessages : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Destroy(GameObject.FindGameObjectWithTag("MusicGUI"));
     }
 
     // Update is called once per frame
@@ -152,8 +152,15 @@ public class TutorialMessages : MonoBehaviour
         Score.SetActive(true);
     }
 
+    public void Skip()
+    {
+        Init.Unlock();
+        SceneManager.LoadScene("Init");
+    }
 
-    int count = 0;
+
+    protected int count = 0;
+    protected float timer = 0;
 
     void FixedUpdate()
     {
@@ -167,9 +174,23 @@ public class TutorialMessages : MonoBehaviour
             }
             else if (count == 2490)
             {
-                block.GetComponent<Blocked>().Unlock();
-                SceneManager.LoadScene("Init");
+                Skip();
             }
         }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            buttonSkip.SetActive(true);
+            timer = 3;
+        }
+        if (timer > 0)
+            timer -= Time.deltaTime;
+        if (timer < 0)
+        {
+            buttonSkip.SetActive(false);
+            timer = 0;
+        }
+
+        buttonSkip.transform.position = new Vector2(transform.position.x+2, transform.position.y-2);
     }
 }

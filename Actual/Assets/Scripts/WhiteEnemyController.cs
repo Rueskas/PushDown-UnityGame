@@ -13,6 +13,7 @@ public class WhiteEnemyController : MonoBehaviour
     protected GameObject player;
     protected GameObject game;
     protected Animator animator;
+    protected AudioSource audioSource;
     protected float timer = 3f;
     protected float speed = -0.04f; // es positiva
     protected bool walk;
@@ -25,6 +26,9 @@ public class WhiteEnemyController : MonoBehaviour
         animator = GetComponent<Animator>();
         player = GameObject.Find("Player");
         game = GameObject.Find("Game");
+
+        audioSource = GetComponent<AudioSource>();
+        audioSource.Play();
     }
 
     // Update is called once per frame
@@ -100,6 +104,7 @@ public class WhiteEnemyController : MonoBehaviour
                 Stunned();
                 walk = false;
                 timer = 4f;
+                audioSource.Play();
             }
         }
 

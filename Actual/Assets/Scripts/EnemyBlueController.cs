@@ -12,6 +12,7 @@ public class EnemyBlueController : MonoBehaviour
     [SerializeField]
     protected GameObject game;
     protected Animator animator;
+    protected AudioSource audioSource;
     protected float timer = 3f;
     protected float speed = 0.06f; // es positiva
     protected bool walk;
@@ -34,6 +35,8 @@ public class EnemyBlueController : MonoBehaviour
         animator = GetComponent<Animator>();
         player = GameObject.Find("Player");
         game = GameObject.Find("Game");
+        audioSource = GetComponent<AudioSource>();
+        audioSource.Play();
     }
 
     // Update is called once per frame
@@ -48,7 +51,7 @@ public class EnemyBlueController : MonoBehaviour
             walk = true;
             timer = 0;
             particle.Stop();
-       }
+        }
         if( walk == true )
         {
             UpdateAnimation("EnemyBlueWalk");
@@ -58,6 +61,7 @@ public class EnemyBlueController : MonoBehaviour
         {
             UpdateAnimation("EnemyBlueIdle");
             timer -= Time.deltaTime;
+            
             if (timer < 0)
             {
                 Destroy(Enemy);
@@ -90,6 +94,7 @@ public class EnemyBlueController : MonoBehaviour
             walk = false;
             particle.Play();
             timer = 3f;
+            audioSource.Play();
         }
         else if (trigger.tag == "DoorBlue")
         {

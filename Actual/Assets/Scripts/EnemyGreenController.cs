@@ -13,6 +13,7 @@ public class EnemyGreenController : MonoBehaviour
     [SerializeField]
     protected ParticleSystem particle;
     protected Animator animator;
+    protected AudioSource audioSource;
     protected float timer = 3f;
     protected float speed = 0.085f; // es positiva
     protected bool walk;
@@ -24,6 +25,9 @@ public class EnemyGreenController : MonoBehaviour
         animator = GetComponent<Animator>();
         player = GameObject.Find("Player");
         game = GameObject.Find("Game");
+
+        audioSource = GetComponent<AudioSource>();
+        audioSource.Play();
     }
 
     // Update is called once per frame
@@ -80,6 +84,7 @@ public class EnemyGreenController : MonoBehaviour
             walk = false;
             particle.Play();
             timer = 3f;
+            audioSource.Play();
         }
         else if (trigger.tag == "DoorBlue")
         {

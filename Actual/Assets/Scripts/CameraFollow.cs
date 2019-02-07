@@ -9,6 +9,9 @@ public class CameraFollow : MonoBehaviour
     protected GameObject player;
     [SerializeField]
     protected GameObject gamePad;
+    [SerializeField]
+    protected GameObject alterGamePad;
+
 
     protected Vector2 MINCAMERA = new Vector2(-12.17744f, 0f);
     protected Vector2 MAXCAMERA = new Vector2(17.6f, 13.69704f);
@@ -29,10 +32,15 @@ public class CameraFollow : MonoBehaviour
             Mathf.Clamp(posX, MINCAMERA.x, MAXCAMERA.x),
                 Mathf.Clamp(posy, MINCAMERA.y, MAXCAMERA.y),
                     transform.position.z);
-
-        gamePad.transform.position = new Vector3(
-            Mathf.Clamp(posX, MINCAMERA.x, MAXCAMERA.x),
-                Mathf.Clamp(posy, MINCAMERA.y, MAXCAMERA.y),
-                    gamePad.transform.position.z);
+        if (gamePad.activeSelf)
+            gamePad.transform.position = new Vector3(
+                Mathf.Clamp(posX, MINCAMERA.x, MAXCAMERA.x),
+                    Mathf.Clamp(posy, MINCAMERA.y, MAXCAMERA.y),
+                        gamePad.transform.position.z);
+        else
+            alterGamePad.transform.position = new Vector3(
+                Mathf.Clamp(posX, MINCAMERA.x, MAXCAMERA.x),
+                    Mathf.Clamp(posy, MINCAMERA.y, MAXCAMERA.y),
+                        gamePad.transform.position.z);
     }
 }
